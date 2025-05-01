@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Виселица</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1 class="logo">Виселица</h1>
+        <form class="search-form" method="POST" action="/start">
+            <input type="text" name="player_name" placeholder="Введите ваше имя" required>
+            <button type="submit">Начать игру</button>
+        </form>
+        <div class="links">
+            <a href="/stats">Статистика</a>
+        </div>
+    </div>
+</body>
+</html>
