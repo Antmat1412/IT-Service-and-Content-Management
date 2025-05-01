@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Результат</title>
+</head>
+<body>
+    {% if win %}
+        <h1>Поздравляю, вы выиграли! 🎉</h1>
+    {% else %}
+        <h1>Увы, вы проиграли... 😢</h1>
+    {% endif %}
+    <p>Загаданное слово: <strong>{{ word }}</strong></p>
+    <a href="/">Играть ещё раз</a>
+</body>
+</html>

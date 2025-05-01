@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Игра "Виселица"</title>
+</head>
+<body>
+    <h1>Угадайте слово:</h1>
+    <p>{{ word_display }}</p>
+    <p>Ошибки: {{ errors }}/{{ max_errors }}</p>
+    <form method="POST">
+        <input type="text" name="letter" maxlength="1" required>
+        <button type="submit">Проверить</button>
+    </form>
+</body>
+</html>
