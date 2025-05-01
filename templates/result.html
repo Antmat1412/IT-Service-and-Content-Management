@@ -1,15 +1,66 @@
 <!DOCTYPE html>
-<html>
+<html lang="ru">
 <head>
-    <title>Результат</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Результат | Виселица</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <style>
+        /* Стили только для страницы результата */
+        .result-container {
+            max-width: 600px;
+            margin: 0 auto;
+            text-align: center;
+        }
+        .result-icon {
+            font-size: 80px;
+            margin: 20px 0;
+        }
+        .win {
+            color: #34A853;  /* Зелёный для победы */
+        }
+        .lose {
+            color: #EA4335;  /* Красный для поражения */
+        }
+        .word-reveal {
+            font-size: 28px;
+            letter-spacing: 5px;
+            margin: 20px 0;
+            font-weight: bold;
+        }
+        .play-again-btn {
+            background-color: #4285F4;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            font-size: 16px;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-top: 20px;
+        }
+    </style>
 </head>
 <body>
-    {% if win %}
-        <h1>Поздравляю, вы выиграли! 🎉</h1>
-    {% else %}
-        <h1>Увы, вы проиграли... 😢</h1>
-    {% endif %}
-    <p>Загаданное слово: <strong>{{ word }}</strong></p>
-    <a href="/">Играть ещё раз</a>
+    <div class="result-container">
+        {% if win %}
+            <!-- Победа -->
+            <div class="result-icon win">🎉</div>
+            <h1>Поздравляем!</h1>
+            <p>Вы успешно угадали слово:</p>
+        {% else %}
+            <!-- Поражение -->
+            <div class="result-icon lose">😢</div>
+            <h1>Увы, вы проиграли</h1>
+            <p>Загаданное слово было:</p>
+        {% endif %}
+
+        <div class="word-reveal">{{ word }}</div>
+
+        <a href="/" class="play-again-btn">Играть снова</a>
+
+        <div class="links">
+            <a href="/stats">Посмотреть статистику</a>
+        </div>
+    </div>
 </body>
 </html>

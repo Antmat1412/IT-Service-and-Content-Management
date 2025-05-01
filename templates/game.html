@@ -1,15 +1,127 @@
 <!DOCTYPE html>
-<html>
+<html lang="ru">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Игра "Виселица"</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <style>
+        /* Стили только для игровой страницы */
+        .game-container {
+            max-width: 600px;
+            margin: 0 auto;
+            text-align: center;
+        }
+        .word-display {
+            font-size: 32px;
+            letter-spacing: 10px;
+            margin: 30px 0;
+            font-family: monospace;
+        }
+        .hangman-drawing {
+            font-family: monospace;
+            white-space: pre;
+            margin: 20px 0;
+            font-size: 18px;
+        }
+        .attempts {
+            color: #d32f2f;
+            font-weight: bold;
+        }
+        .letter-input {
+            font-size: 24px;
+            width: 50px;
+            text-align: center;
+            margin-right: 10px;
+        }
+    </style>
 </head>
 <body>
-    <h1>Угадайте слово:</h1>
-    <p>{{ word_display }}</p>
-    <p>Ошибки: {{ errors }}/{{ max_errors }}</p>
-    <form method="POST">
-        <input type="text" name="letter" maxlength="1" required>
-        <button type="submit">Проверить</button>
-    </form>
+    <div class="game-container">
+        <h1 class="logo">Виселица</h1>
+        
+        <!-- ASCII-рисунок виселицы (меняется в зависимости от ошибок) -->
+        <div class="hangman-drawing">
+            {% if errors == 0 %}
+              _______
+             |/      |
+             |
+             |
+             |
+             |
+            {% elif errors == 1 %}
+              _______
+             |/      |
+             |      😊
+             |
+             |
+             |
+            {% elif errors == 2 %}
+              _______
+             |/      |
+             |      😊
+             |      |
+             |
+             |
+            {% elif errors == 3 %}
+              _______
+             |/      |
+             |      😊
+             |     /|
+             |
+             |
+            {% elif errors == 4 %}
+              _______
+             |/      |
+             |      😊
+             |     /|\
+             |
+             |
+            {% elif errors == 5 %}
+              _______
+             |/      |
+             |      😊
+             |     /|\
+             |     /
+             |
+            {% elif errors >= 6 %}
+              _______
+             |/      |
+             |      😵
+             |     /|\
+             |     / \
+             |
+            {% endif %}
+        </div>
+
+        <!-- Отображение слова (например: _ _ _ _ _) -->
+        <div class="word-display">
+            {{ word_display }}
+        </div>
+
+        <!-- Счётчик ошибок -->
+        <p>Ошибки: <span class="attempts">{{ errors }}/{{ max_errors }}</span></p>
+
+        <!-- Форма для ввода буквы -->
+        <form method="POST">
+            <input 
+                type="text" 
+                name="letter" 
+                class="letter-input" 
+                maxlength="1" 
+                autofocus
+                required
+                pattern="[а-яА-ЯёЁ]"  <!-- Только русские буквы -->
+                title="Введите одну русскую букву"
+            >
+            <button type="submit">Проверить</button>
+        </form>
+
+        <!-- Ссылка на статистику -->
+        <div class="links">
+            <a href="/stats">Статистика</a> | 
+            <a href="/">На главную</a>
+        </div>
+    </div>
 </body>
 </html>

@@ -1,24 +1,31 @@
 <!DOCTYPE html>
-<html>
+<html lang="ru">
 <head>
-    <title>Статистика игроков</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Статистика</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
-    <h1>Топ игроков</h1>
-    <table border="1">
-        <tr>
-            <th>Игрок</th>
-            <th>Победы</th>
-            <th>Поражения</th>
-        </tr>
-        {% for player in players %}
-        <tr>
-            <td>{{ player.name }}</td>
-            <td>{{ player.wins }}</td>
-            <td>{{ player.losses }}</td>
-        </tr>
-        {% endfor %}
-    </table>
-    <a href="/">На главную</a>
+    <div class="container">
+        <h1 class="logo">Статистика</h1>
+        <table class="stats-table">
+            <tr>
+                <th>Игрок</th>
+                <th>Победы</th>
+                <th>Поражения</th>
+            </tr>
+            {% for player in players %}
+            <tr>
+                <td>{{ player.name }}</td>
+                <td>{{ player.wins }}</td>
+                <td>{{ player.losses }}</td>
+            </tr>
+            {% endfor %}
+        </table>
+        <div class="links">
+            <a href="/">На главную</a>
+        </div>
+    </div>
 </body>
 </html>
