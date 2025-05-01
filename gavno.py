@@ -21,7 +21,7 @@ class Player(db.Model):
 
 # Инициализация БД (перенесена в контекст приложения)
 def init_db():
-    with app.app_context():  # <-- Важно! Работаем внутри контекста
+    with app.app_context():
         db.create_all()
         if not Word.query.first():
             words = [
